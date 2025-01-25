@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mona's Real Estate</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Existing styles */
+        
+        .image-placeholder {
+            background-color: #f8f9fa;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px 8px 0 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .contact-for-images {
+            text-align: center;
+            padding: 20px;
+            color: #6c757d;
+        }
+        
+        .contact-for-images i {
+            color: #0d6efd;
+            margin-bottom: 10px;
+        }
+        
+        .contact-for-images p {
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .contact-for-images small {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-home me-2"></i>Mona's Real Estate
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#properties">Properties</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row min-vh-80 align-items-center">
+                <div class="col-md-8 mx-auto text-center">
+                    <h1 class="text-white mb-4">Find Your Perfect Home</h1>
+                    <p class="text-white mb-5">Discover exceptional properties that match your lifestyle and dreams.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Properties Section -->
+    <section id="properties" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Our Properties</h2>
+            <div class="filters-section mb-5">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label for="location-filter" class="form-label">Location</label>
+                        <select class="form-select" id="location-filter">
+                            <option value="">All Locations</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="type-filter" class="form-label">Property Type</label>
+                        <select class="form-select" id="type-filter">
+                            <option value="">All Types</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Price Range (EGP)</label>
+                        <div class="price-range-wrapper">
+                            <div class="multi-range">
+                                <input type="range" id="price-min" min="0" max="20000000" step="500000" value="0" class="form-range">
+                                <input type="range" id="price-max" min="0" max="20000000" step="500000" value="20000000" class="form-range">
+                            </div>
+                            <div class="d-flex justify-content-between mt-2">
+                                <span id="min-price" class="price-label">0 EGP</span>
+                                <span id="max-price" class="price-label">20M EGP</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4" id="properties-container">
+                <!-- Properties will be dynamically loaded here -->
+            </div>
+            <div class="text-center mt-4" id="show-more-container">
+                <button class="btn btn-outline-primary me-2" id="show-less-btn" style="display: none;">Show Less</button>
+                <button class="btn btn-outline-primary me-2" id="show-more-btn" style="display: none;">Show More</button>
+                <button class="btn btn-outline-primary" id="show-all-btn" style="display: none;">Show All</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2>Contact Us</h2>
+                    <p class="mb-4">Get in touch with us to find your dream home</p>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone me-2"></i> +20 11 41452523</p>
+                        <p><i class="fas fa-envelope me-2"></i> mona.tya2@gmail.com</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <form id="contact-form" class="contact-form">
+                        <input type="hidden" id="property-info" name="property-info" value="">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="tel" class="form-control" id="phone" name="phone" placeholder="Your Phone Number" required>
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" id="message" name="message" rows="4" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-paper-plane me-2"></i>Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 Mona's Real Estate. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init({
+                publicKey: "6cIGGSzFO2I5S5FI6",
+                privateKey: "DmBz87m1uPMoc-JAeT9nm"
+            });
+        })();
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
