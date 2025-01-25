@@ -669,21 +669,35 @@ Thank you!`;
                 "service_6b5l638",
                 "template_fsfs7pu",
                 {
+                    message: `*New Property Inquiry*
+
+*Client Details:*
+👤 Name: ${name}
+📧 Email: ${email}
+📱 Phone: ${phone}
+
+*Property Details:*
+🏠 Unit: ${propertyInfo.title}
+📍 Location: ${propertyInfo.location}
+💰 Price: ${propertyInfo.price}
+${propertyInfo.bedrooms ? `🛏️ Bedrooms: ${propertyInfo.bedrooms}` : ''}
+${propertyInfo.bathrooms ? `🚿 Bathrooms: ${propertyInfo.bathrooms}` : ''}
+📐 Area: ${propertyInfo.area}
+${propertyInfo.gardenArea ? `🌳 Garden Area: ${propertyInfo.gardenArea}` : ''}
+
+*Payment Details:*
+💵 Down Payment: ${formatPrice(propertyInfo.payment.downPayment)}
+💳 Remaining Amount: ${formatPrice(propertyInfo.payment.remainingAmount)}
+⏱️ Installment Duration: ${propertyInfo.payment.installmentDuration}
+
+*Client's Message:*
+${message}
+
+Thank you!`,
                     to_email: "mona.tya2@gmail.com",
                     from_name: name,
                     from_email: email,
-                    from_phone: phone,
-                    property_title: propertyInfo.title || '',
-                    property_location: propertyInfo.location || '',
-                    property_price: propertyInfo.price || '',
-                    property_area: propertyInfo.area || '',
-                    property_bedrooms: propertyInfo.bedrooms || '',
-                    property_bathrooms: propertyInfo.bathrooms || '',
-                    property_garden: propertyInfo.gardenArea || '',
-                    property_downpayment: propertyInfo.payment ? formatPrice(propertyInfo.payment.downPayment) : '',
-                    property_remaining: propertyInfo.payment ? formatPrice(propertyInfo.payment.remainingAmount) : '',
-                    property_duration: propertyInfo.payment ? propertyInfo.payment.installmentDuration : '',
-                    message: message
+                    from_phone: phone
                 },
                 "6cIGGSzFO2I5S5FI6"
             );
