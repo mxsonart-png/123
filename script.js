@@ -357,6 +357,23 @@ const properties = [
     }
 ];
 
+// Function to get a random Sahl Hasheesh image
+function getRandomSahlHasheeshImage() {
+    const sahlHasheeshImages = [
+        "images/property1.png",
+        "images/property2.png",
+        "images/property3.png"
+    ];
+    return sahlHasheeshImages[Math.floor(Math.random() * sahlHasheeshImages.length)];
+}
+
+// Modify properties to assign random Sahl Hasheesh images
+for (let i = 0; i < properties.length; i++) {
+    if (properties[i].location === "Sahl Hasheesh") {
+        properties[i].imageUrl = getRandomSahlHasheeshImage();
+    }
+}
+
 // Global variables for pagination
 let currentDisplayCount = 3;
 const initialDisplayCount = 3;
