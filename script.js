@@ -10,6 +10,7 @@ const properties = [
         bedrooms: 2,
         bathrooms: 2,
         area: "96 m²",
+        imageUrl: "images/property1.png", // Local image file
         description: "Luxury 2-bedroom chalet in Edelma House",
         projectDetails: {
             projectName: "Edelma House",
@@ -34,6 +35,7 @@ const properties = [
         bedrooms: 2,
         bathrooms: 2,
         area: "139 m²",
+        imageUrl: "images/property2.png", // Local image file
         description: "Spacious 2-bedroom chalet in Edelma House",
         projectDetails: {
             projectName: "Edelma House",
@@ -59,6 +61,7 @@ const properties = [
         bathrooms: 2,
         area: "173 m²",
         gardenArea: "170 m²",
+        imageUrl: "images/property3.png", // Local image file
         description: "Ground floor apartment with spacious garden in UPVILLE",
         projectDetails: {
             projectName: "UPVILLE",
@@ -84,6 +87,7 @@ const properties = [
         location: "6th October City",
         type: "Apartment",
         area: "49 m²",
+        imageUrl: "images/property4.png", // Local image file
         description: "Modern apartment in Building 14C",
         projectDetails: {
             projectName: "Building 14C",
@@ -106,6 +110,7 @@ const properties = [
         location: "6th October City",
         type: "Apartment",
         area: "124 m²",
+        imageUrl: "images/property5.png", // Local image file
         description: "Spacious apartment in Building 14C",
         projectDetails: {
             projectName: "Building 14C",
@@ -128,6 +133,7 @@ const properties = [
         location: "6th October City",
         type: "Apartment",
         area: "124 m²",
+        imageUrl: "images/property6.png", // Local image file
         description: "Modern apartment in Building 14C",
         projectDetails: {
             projectName: "Building 14C",
@@ -150,6 +156,7 @@ const properties = [
         location: "6th October City",
         type: "Apartment",
         area: "134 m²",
+        imageUrl: "images/property7.png", // Local image file
         description: "First floor apartment in Building 14C",
         projectDetails: {
             projectName: "Building 14C",
@@ -172,6 +179,7 @@ const properties = [
         location: "6th October City",
         type: "Apartment",
         area: "139 m²",
+        imageUrl: "images/property8.png", // Local image file
         description: "First floor apartment in Building 14C",
         projectDetails: {
             projectName: "Building 14C",
@@ -194,6 +202,7 @@ const properties = [
         location: "6th October City",
         type: "Apartment",
         area: "98 m²",
+        imageUrl: "images/property9.png", // Local image file
         description: "First floor apartment in Building 14C",
         projectDetails: {
             projectName: "Building 14C",
@@ -216,6 +225,7 @@ const properties = [
         location: "6th October City",
         type: "Apartment",
         area: "139 m²",
+        imageUrl: "images/property10.png", // Local image file
         description: "Second floor apartment in Building 14C",
         projectDetails: {
             projectName: "Building 14C",
@@ -238,6 +248,7 @@ const properties = [
         location: "6th October City",
         type: "Apartment",
         area: "134 m²",
+        imageUrl: "images/property11.png", // Local image file
         description: "Third floor apartment in Building 14C",
         projectDetails: {
             projectName: "Building 14C",
@@ -260,6 +271,7 @@ const properties = [
         location: "6th October City",
         type: "Apartment",
         area: "139 m²",
+        imageUrl: "images/property12.png", // Local image file
         description: "Third floor apartment in Building 14C",
         projectDetails: {
             projectName: "Building 14C",
@@ -282,6 +294,7 @@ const properties = [
         location: "6th October City",
         type: "Apartment",
         area: "157 m²",
+        imageUrl: "images/property13.png", // Local image file
         description: "Fourth floor apartment in Building 14C",
         projectDetails: {
             projectName: "Building 14C",
@@ -304,6 +317,7 @@ const properties = [
         location: "6th October City",
         type: "Apartment",
         area: "162 m²",
+        imageUrl: "images/property14.png", // Local image file
         description: "Fourth floor apartment in Building 14C",
         projectDetails: {
             projectName: "Building 14C",
@@ -326,6 +340,7 @@ const properties = [
         location: "6th October City",
         type: "Apartment",
         area: "118 m²",
+        imageUrl: "images/property15.png", // Local image file
         description: "Fourth floor apartment in Building 14C",
         projectDetails: {
             projectName: "Building 14C",
@@ -434,11 +449,15 @@ function createPropertyCard(property) {
     propertyCard.innerHTML = `
         <div class="property-card">
             <div class="image-placeholder">
-                <div class="contact-for-images">
-                    <i class="fas fa-images fa-2x mb-2"></i>
-                    <p>Contact Mona to view property images</p>
-                    <small>Available upon request</small>
-                </div>
+                ${property.imageUrl ? `
+                    <img src="${property.imageUrl}" alt="${property.title}">
+                ` : `
+                    <div class="contact-for-images">
+                        <i class="fas fa-images fa-2x mb-2"></i>
+                        <p>Contact Mona to view property images</p>
+                        <small>Available upon request</small>
+                    </div>
+                `}
             </div>
             <div class="property-info">
                 <h3 class="mb-3">${property.title}</h3>
