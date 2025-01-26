@@ -2,7 +2,7 @@
 const properties = [
     {
         id: "A104",
-        title: "Edelma Chalet A104",
+        title: "Edelma Chalet",
         price: "EGP 7,500,000",
         priceValue: 7500000,
         location: "Sahl Hasheesh",
@@ -26,7 +26,7 @@ const properties = [
     },
     {
         id: "C102",
-        title: "Edelma Chalet C102",
+        title: "Edelma Chalet",
         price: "EGP 10,330,000",
         priceValue: 10330000,
         location: "Sahl Hasheesh",
@@ -50,7 +50,7 @@ const properties = [
     },
     {
         id: "C208",
-        title: "Edelma Chalet C208",
+        title: "Edelma Chalet",
         price: "EGP 6,850,000",
         priceValue: 6850000,
         location: "Sahl Hasheesh",
@@ -73,7 +73,7 @@ const properties = [
         }
     },{
         id: "D206",
-        title: "Edelma Chalet D206",
+        title: "Edelma Chalet",
         price: "EGP 6,500,000",
         priceValue: 6500000,
         location: "Sahl Hasheesh",
@@ -97,7 +97,7 @@ const properties = [
     },
     {
         id: "B14-04",
-        title: "UPVILLE Apartment B14-04",
+        title: "UPVILLE Apartment",
         price: "EGP 6,200,000",
         priceValue: 6200000,
         location: "Sahl Hasheesh",
@@ -125,7 +125,7 @@ const properties = [
     },
     {
         id: "14C-000-001",
-        title: "6th October City Unit 14C-000-001",
+        title: "6th October City Unit",
         price: "EGP 1,930,000",
         priceValue: 1930000,
         location: "6th October City",
@@ -148,7 +148,7 @@ const properties = [
     },
     {
         id: "14C-000-002",
-        title: "6th October City Unit 14C-000-002",
+        title: "6th October City",
         price: "EGP 4,246,000",
         priceValue: 4246000,
         location: "6th October City",
@@ -171,7 +171,7 @@ const properties = [
     },
     {
         id: "14C-000-003",
-        title: "6th October City Unit 14C-000-003",
+        title: "6th October City",
         price: "EGP 4,315,000",
         priceValue: 4315000,
         location: "6th October City",
@@ -194,7 +194,7 @@ const properties = [
     },
     {
         id: "14C-001-101",
-        title: "6th October City Unit 14C-001-101",
+        title: "6th October City ",
         price: "EGP 3,995,000",
         priceValue: 3995000,
         location: "6th October City",
@@ -217,7 +217,7 @@ const properties = [
     },
     {
         id: "14C-001-102",
-        title: "6th October City Unit 14C-001-102",
+        title: "6th October City ",
         price: "EGP 4,140,000",
         priceValue: 4140000,
         location: "6th October City",
@@ -240,7 +240,7 @@ const properties = [
     },
     {
         id: "14C-001-103",
-        title: "6th October City Unit 14C-001-103",
+        title: "6th October City ",
         price: "EGP 2,929,000",
         priceValue: 2929000,
         location: "6th October City",
@@ -263,7 +263,7 @@ const properties = [
     },
     {
         id: "14C-002-202",
-        title: "6th October City Unit 14C-002-202",
+        title: "6th October City ",
         price: "EGP 4,140,000",
         priceValue: 4140000,
         location: "6th October City",
@@ -286,7 +286,7 @@ const properties = [
     },
     {
         id: "14C-003-301",
-        title: "6th October City Unit 14C-003-301",
+        title: "6th October City ",
         price: "EGP 4,064,000",
         priceValue: 4064000,
         location: "6th October City",
@@ -309,7 +309,7 @@ const properties = [
     },
     {
         id: "14C-003-302",
-        title: "6th October City Unit 14C-003-302",
+        title: "6th October City2",
         price: "EGP 4,212,000",
         priceValue: 4212000,
         location: "6th October City",
@@ -332,7 +332,7 @@ const properties = [
     },
     {
         id: "14C-004-401",
-        title: "6th October City Unit 14C-004-401",
+        title: "6th October City",
         price: "EGP 5,259,000",
         priceValue: 5259000,
         location: "6th October City",
@@ -355,7 +355,7 @@ const properties = [
     },
     {
         id: "14C-004-402",
-        title: "6th October City Unit 14C-004-402",
+        title: "6th October City ",
         price: "EGP 5,432,000",
         priceValue: 5432000,
         location: "6th October City",
