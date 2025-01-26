@@ -10,7 +10,7 @@ const properties = [
         bedrooms: 2,
         bathrooms: 2,
         area: "96 m²",
-        imageUrl: "", // Local image file
+        imageUrl: "images/sahlhasheesh1.jpg", // Local image file
         description: "Luxury 2-bedroom chalet in Edelma House",
         projectDetails: {
             projectName: "Edelma House",
@@ -35,7 +35,7 @@ const properties = [
         bedrooms: 2,
         bathrooms: 2,
         area: "139 m²",
-        imageUrl: "", // Local image file
+        imageUrl: "images/sahlhasheesh2.jpg", // Local image file
         description: "Spacious 2-bedroom chalet in Edelma House",
         projectDetails: {
             projectName: "Edelma House",
@@ -61,7 +61,7 @@ const properties = [
         bathrooms: 2,
         area: "173 m²",
         gardenArea: "170 m²",
-        imageUrl: "", // Local image file
+        imageUrl: "images/sahlhasheesh3.jpg", // Local image file
         description: "Ground floor apartment with spacious garden in UPVILLE",
         projectDetails: {
             projectName: "UPVILLE",
