@@ -358,7 +358,7 @@ const properties = [
 ];
 
 // Manually assign Sahl Hasheesh images
-const sahlHasheeshImages = ["sahlhasheesh1.jpg", "sahlhasheesh2.jpg", "sahlhasheesh3.jpg"];
+const sahlHasheeshImages = ["images/sahlhasheesh1.jpg", "images/sahlhasheesh2.jpg", "images/sahlhasheesh3.jpg"];
 
 for (let i = 0; i < properties.length; i++) {
     if (properties[i].location === "Sahl Hasheesh") {
