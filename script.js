@@ -43,7 +43,7 @@ const properties = [
             payment: {
                 totalPrice: 13300000,
                 downPayment: 5080000,
-                remainingAmount: 5250000,
+                remainingAmount: 8250000,
                 installmentDuration: "1.5 Years"
             }
         }
@@ -66,7 +66,7 @@ const properties = [
             floorNo: 1,
             payment: {
                 totalPrice: 6850000,
-                downPayment: 6865000,
+                downPayment: 6850000,
                 remainingAmount: 0,
                 installmentDuration: "0 "
             }
