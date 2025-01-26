@@ -3,12 +3,11 @@ const properties = [
     {
         id: "A104",
         title: "Edelma House Chalet A104",
-        price: "EGP 6,096,680",
-        priceValue: 6096680,
+        price: "EGP 7,500,000",
+        priceValue: 7500000,
         location: "Sahl Hasheesh",
         type: "Chalet",
         bedrooms: 2,
-        bathrooms: 2,
         area: "96 m²",
         imageUrl: "images/sahlhasheesh1.jpg", // Local image file
         description: "Luxury 2-bedroom chalet in Edelma House",
@@ -18,8 +17,8 @@ const properties = [
             unitType: "Chalet",
             floorNo: 1,
             payment: {
-                totalPrice: 6096680,
-                downPayment: 5432224,
+                totalPrice: 7500000,
+                downPayment: 6835544,
                 remainingAmount: 664456,
                 installmentDuration: "3 Years"
             }
@@ -33,7 +32,6 @@ const properties = [
         location: "Sahl Hasheesh",
         type: "Chalet",
         bedrooms: 2,
-        bathrooms: 2,
         area: "139 m²",
         imageUrl: "images/sahlhasheesh2.jpg", // Local image file
         description: "Spacious 2-bedroom chalet in Edelma House",
@@ -51,6 +49,53 @@ const properties = [
         }
     },
     {
+        id: "C208",
+        title: "Edelma House Chalet C208",
+        price: "EGP 6,850,000",
+        priceValue: 6850000,
+        location: "Sahl Hasheesh",
+        type: "Chalet",
+        bedrooms: 1,
+        area: "87 m²",
+        imageUrl: "images/sahlhasheesh2.jpg", // Local image file
+        description: "Spacious 1-bedroom chalet in Edelma House",
+        projectDetails: {
+            projectName: "Edelma House",
+            unitNo: "C208",
+            unitType: "Chalet",
+            floorNo: 1,
+            payment: {
+                totalPrice: 6850000,
+                downPayment: 6865000,
+                remainingAmount: 0,
+                installmentDuration: "0 "
+            }
+        }
+    },{
+        id: "D206",
+        title: "Edelma House Chalet D206",
+        price: "EGP 6,500,000",
+        priceValue: 6500000,
+        location: "Sahl Hasheesh",
+        type: "Chalet",
+        bedrooms: 1,
+        area: "70 m²",
+        imageUrl: "images/sahlhasheesh2.jpg", // Local image file
+        description: "Spacious 1-bedroom chalet in Edelma House",
+        projectDetails: {
+            projectName: "Edelma House",
+            unitNo: "D206",
+            unitType: "Chalet",
+            floorNo: 1,
+            payment: {
+                totalPrice: 6500000,
+                downPayment: 6049787,
+                remainingAmount: 450213,
+                installmentDuration: "2 Years"
+            }
+        }
+    },
+    {
         id: "B14-04",
         title: "UPVILLE Apartment B14-04",
         price: "EGP 6,200,000",
@@ -58,10 +103,9 @@ const properties = [
         location: "Sahl Hasheesh",
         type: "Apartment",
         bedrooms: 3,
-        bathrooms: 2,
         area: "173 m²",
         gardenArea: "170 m²",
-        imageUrl: "images/sahlhasheesh3.jpg", // Local image file
+        imageUrl: "images/IMG-20250126-WA0002.jpg", // Local image file
         description: "Ground floor apartment with spacious garden in UPVILLE",
         projectDetails: {
             projectName: "UPVILLE",
@@ -377,6 +421,11 @@ for (let i = 0; i < properties.length; i++) {
     }
 }
 
+// Remove bathrooms from all properties
+for (let i = 0; i < properties.length; i++) {
+    delete properties[i].bathrooms;
+}
+
 // Global variables for pagination
 let currentDisplayCount = 3;
 const initialDisplayCount = 3;
@@ -486,7 +535,6 @@ function createPropertyCard(property) {
                     <div class="property-features">
                         <span><i class="fas fa-ruler-combined"></i> ${property.area}</span>
                         ${property.bedrooms ? `<span><i class="fas fa-bed"></i> ${property.bedrooms} Bedrooms</span>` : ''}
-                        ${property.bathrooms ? `<span><i class="fas fa-bath"></i> ${property.bathrooms} Bathrooms</span>` : ''}
                         ${property.gardenArea ? `<span><i class="fas fa-tree"></i> Garden: ${property.gardenArea}</span>` : ''}
                     </div>
                     <div class="property-location mt-2">
@@ -580,7 +628,6 @@ function contactAboutProperty(propertyId) {
         location: property.location,
         area: property.area,
         bedrooms: property.bedrooms,
-        bathrooms: property.bathrooms,
         gardenArea: property.gardenArea,
         payment: property.projectDetails.payment,
         contactMethod: 'whatsapp'
@@ -596,7 +643,6 @@ Property Details:
 - Price: ${property.price}
 - Area: ${property.area}
 ${property.bedrooms ? `- Bedrooms: ${property.bedrooms}` : ''}
-${property.bathrooms ? `- Bathrooms: ${property.bathrooms}` : ''}
 ${property.gardenArea ? `- Garden Area: ${property.gardenArea}` : ''}
 
 Payment Details:
@@ -624,7 +670,6 @@ function showEmailForm(propertyId) {
         location: property.location,
         area: property.area,
         bedrooms: property.bedrooms,
-        bathrooms: property.bathrooms,
         gardenArea: property.gardenArea,
         payment: property.projectDetails.payment
     });
@@ -639,7 +684,6 @@ Property Details:
 - Price: ${property.price}
 - Area: ${property.area}
 ${property.bedrooms ? `- Bedrooms: ${property.bedrooms}` : ''}
-${property.bathrooms ? `- Bathrooms: ${property.bathrooms}` : ''}
 ${property.gardenArea ? `- Garden Area: ${property.gardenArea}` : ''}
 
 Payment Details:
@@ -685,9 +729,8 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 📍 Location: ${propertyInfo.location}
 💰 Price: ${propertyInfo.price}
 ${propertyInfo.bedrooms ? `🛏️ Bedrooms: ${propertyInfo.bedrooms}` : ''}
-${propertyInfo.bathrooms ? `🚿 Bathrooms: ${propertyInfo.bathrooms}` : ''}
-📐 Area: ${propertyInfo.area}
 ${propertyInfo.gardenArea ? `🌳 Garden Area: ${propertyInfo.gardenArea}` : ''}
+📐 Area: ${propertyInfo.area}
 
 *Payment Details:*
 💵 Down Payment: ${formatPrice(propertyInfo.payment.downPayment)}
@@ -720,9 +763,8 @@ Thank you!`;
 📍 Location: ${propertyInfo.location}
 💰 Price: ${propertyInfo.price}
 ${propertyInfo.bedrooms ? `🛏️ Bedrooms: ${propertyInfo.bedrooms}` : ''}
-${propertyInfo.bathrooms ? `🚿 Bathrooms: ${propertyInfo.bathrooms}` : ''}
-📐 Area: ${propertyInfo.area}
 ${propertyInfo.gardenArea ? `🌳 Garden Area: ${propertyInfo.gardenArea}` : ''}
+📐 Area: ${propertyInfo.area}
 
 *Payment Details:*
 💵 Down Payment: ${formatPrice(propertyInfo.payment.downPayment)}
