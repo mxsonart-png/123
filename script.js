@@ -357,27 +357,18 @@ const properties = [
     }
 ];
 
-// Modify properties to assign October City image
-for (let i = 0; i < properties.length; i++) {
-    if (properties[i].location === "6th October City") {
-        properties[i].imageUrl = "images/oct.jpg";
-    }
-}
+// Manually assign Sahl Hasheesh images
+const sahlHasheeshImages = ["sahlhasheesh1.jpg", "sahlhasheesh2.jpg", "sahlhasheesh3.jpg"];
 
-// Function to get a random Sahl Hasheesh image
-function getRandomSahlHasheeshImage() {
-    const sahlHasheeshImages = [
-        "images/property1.png",
-        "images/property2.png",
-        "images/property3.png"
-    ];
-    return sahlHasheeshImages[Math.floor(Math.random() * sahlHasheeshImages.length)];
-}
-
-// Modify properties to assign random Sahl Hasheesh images
 for (let i = 0; i < properties.length; i++) {
     if (properties[i].location === "Sahl Hasheesh") {
-        properties[i].imageUrl = getRandomSahlHasheeshImage();
+        // Randomly select from Sahl Hasheesh images
+        properties[i].imageUrl = `images/${sahlHasheeshImages[Math.floor(Math.random() * sahlHasheeshImages.length)]}`;
+    }
+    
+    if (properties[i].location === "6th October City") {
+        // Always use oct.jpg for October City
+        properties[i].imageUrl = "images/oct.jpg";
     }
 }
 
