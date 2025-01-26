@@ -10,7 +10,7 @@ const properties = [
         bedrooms: 2,
         bathrooms: 2,
         area: "96 m²",
-        imageUrl: "images/sahlhasheesh1.jpg", // Local image file
+        imageUrl: "", // Local image file
         description: "Luxury 2-bedroom chalet in Edelma House",
         projectDetails: {
             projectName: "Edelma House",
@@ -35,7 +35,7 @@ const properties = [
         bedrooms: 2,
         bathrooms: 2,
         area: "139 m²",
-        imageUrl: "images/sahlhasheesh1.jpg", // Local image file
+        imageUrl: "", // Local image file
         description: "Spacious 2-bedroom chalet in Edelma House",
         projectDetails: {
             projectName: "Edelma House",
@@ -61,7 +61,7 @@ const properties = [
         bathrooms: 2,
         area: "173 m²",
         gardenArea: "170 m²",
-        imageUrl: "images/sahlhasheesh1.jpg", // Local image file
+        imageUrl: "", // Local image file
         description: "Ground floor apartment with spacious garden in UPVILLE",
         projectDetails: {
             projectName: "UPVILLE",
@@ -357,17 +357,22 @@ const properties = [
     }
 ];
 
-// Manually assign Sahl Hasheesh images
-const sahlHasheeshImages = ["images/sahlhasheesh1.jpg", "images/sahlhasheesh2.jpg", "images/sahlhasheesh3.jpg"];
+// Manually set Sahl Hasheesh images
+const sahlHasheeshProperties = [
+    { id: "A104", imageUrl: "images/sahlhasheesh1.jpg" },
+    { id: "C102", imageUrl: "images/sahlhasheesh2.jpg" },
+    { id: "B14-04", imageUrl: "images/sahlhasheesh3.jpg" }
+];
 
+// Apply Sahl Hasheesh images
 for (let i = 0; i < properties.length; i++) {
+    const sahlHasheeshProperty = sahlHasheeshProperties.find(p => p.id === properties[i].id);
+    
     if (properties[i].location === "Sahl Hasheesh") {
-        // Randomly select from Sahl Hasheesh images
-        properties[i].imageUrl = `images/${sahlHasheeshImages[Math.floor(Math.random() * sahlHasheeshImages.length)]}`;
+        properties[i].imageUrl = sahlHasheeshProperty ? sahlHasheeshProperty.imageUrl : "images/sahlhasheesh1.jpg";
     }
     
     if (properties[i].location === "6th October City") {
-        // Always use oct.jpg for October City
         properties[i].imageUrl = "images/oct.jpg";
     }
 }
