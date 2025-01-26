@@ -2,7 +2,7 @@
 const properties = [
     {
         id: "A104",
-        title: "Edelma House Chalet A104",
+        title: "Edelma Chalet A104",
         price: "EGP 7,500,000",
         priceValue: 7500000,
         location: "Sahl Hasheesh",
@@ -26,9 +26,9 @@ const properties = [
     },
     {
         id: "C102",
-        title: "Edelma House Chalet C102",
-        price: "EGP 13,300,000",
-        priceValue: 13300000,
+        title: "Edelma Chalet C102",
+        price: "EGP 10,330,000",
+        priceValue: 10330000,
         location: "Sahl Hasheesh",
         type: "Chalet",
         bedrooms: 2,
@@ -41,16 +41,16 @@ const properties = [
             unitType: "Chalet",
             floorNo: 1,
             payment: {
-                totalPrice: 13300000,
+                totalPrice: 10330000,
                 downPayment: 5080000,
-                remainingAmount: 8250000,
+                remainingAmount: 5250000,
                 installmentDuration: "1.5 Years"
             }
         }
     },
     {
         id: "C208",
-        title: "Edelma House Chalet C208",
+        title: "Edelma Chalet C208",
         price: "EGP 6,850,000",
         priceValue: 6850000,
         location: "Sahl Hasheesh",
@@ -73,7 +73,7 @@ const properties = [
         }
     },{
         id: "D206",
-        title: "Edelma House Chalet D206",
+        title: "Edelma Chalet D206",
         price: "EGP 6,500,000",
         priceValue: 6500000,
         location: "Sahl Hasheesh",
