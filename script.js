@@ -475,12 +475,22 @@ function filterProperties() {
     const minPrice = parseInt(document.getElementById('price-min').value) || 0;
     const maxPrice = parseInt(document.getElementById('price-max').value) || Number.MAX_SAFE_INTEGER;
 
-    // Filter properties
-    filteredProperties = properties.filter(property => 
-        (location === 'all' || property.location === location) &&
-        (type === 'all' || property.type === type) &&
-        property.priceValue >= minPrice &&
-        property.priceValue <= maxPrice
+    // Reset filtered properties to all properties
+    filteredProperties = [...properties];
+
+    // Apply location filter if not "all"
+    if (location !== 'all') {
+        filteredProperties = filteredProperties.filter(property => property.location === location);
+    }
+
+    // Apply type filter if not "all"
+    if (type !== 'all') {
+        filteredProperties = filteredProperties.filter(property => property.type === type);
+    }
+
+    // Apply price filter
+    filteredProperties = filteredProperties.filter(property => 
+        property.priceValue >= minPrice && property.priceValue <= maxPrice
     );
 
     // Reset display count when filter changes
