@@ -9,7 +9,7 @@ const properties = [
         type: "Chalet",
         bedrooms: 2,
         area: "96 m²",
-        imageUrl: "images/sahlhasheesh1.jpg", // Local image file
+        imageUrl: "images/sahlhasheesh1.jpg",
         description: "Luxury 2-bedroom chalet in Edelma House",
         projectDetails: {
             projectName: "Edelma House",
@@ -27,13 +27,13 @@ const properties = [
     {
         id: "C102",
         title: "Edelma Chalet",
-        price: "EGP 10,330,000",
-        priceValue: 10330000,
+        price: "EGP 13,300,000",
+        priceValue: 13300000,
         location: "Sahl Hasheesh",
         type: "Chalet",
         bedrooms: 2,
         area: "139 m²",
-        imageUrl: "images/sahlhasheesh2.jpg", // Local image file
+        imageUrl: "images/sahlhasheesh2.jpg",
         description: "Spacious 2-bedroom chalet in Edelma House",
         projectDetails: {
             projectName: "Edelma House",
@@ -41,9 +41,9 @@ const properties = [
             unitType: "Chalet",
             floorNo: 1,
             payment: {
-                totalPrice: 10330000,
+                totalPrice: 13300000,
                 downPayment: 5080000,
-                remainingAmount: 5250000,
+                remainingAmount: 8250000,
                 installmentDuration: "1.5 Years"
             }
         }
@@ -57,7 +57,7 @@ const properties = [
         type: "Chalet",
         bedrooms: 1,
         area: "87 m²",
-        imageUrl: "images/sahlhasheesh2.jpg", // Local image file
+        imageUrl: "images/sahlhasheesh2.jpg",
         description: "Spacious 1-bedroom chalet in Edelma House",
         projectDetails: {
             projectName: "Edelma House",
@@ -68,10 +68,11 @@ const properties = [
                 totalPrice: 6850000,
                 downPayment: 6850000,
                 remainingAmount: 0,
-                installmentDuration: "0 "
+                installmentDuration: "0"
             }
         }
-    },{
+    },
+    {
         id: "D206",
         title: "Edelma Chalet",
         price: "EGP 6,500,000",
@@ -80,7 +81,7 @@ const properties = [
         type: "Chalet",
         bedrooms: 1,
         area: "70 m²",
-        imageUrl: "images/sahlhasheesh2.jpg", // Local image file
+        imageUrl: "images/sahlhasheesh2.jpg",
         description: "Spacious 1-bedroom chalet in Edelma House",
         projectDetails: {
             projectName: "Edelma House",
@@ -105,21 +106,18 @@ const properties = [
         bedrooms: 3,
         area: "173 m²",
         gardenArea: "170 m²",
-        imageUrl: "images/IMG-20250126-WA0002.jpg", // Local image file
+        imageUrl: "images/IMG-20250126-WA0002.jpg",
         description: "Ground floor apartment with spacious garden in UPVILLE",
         projectDetails: {
             projectName: "UPVILLE",
             unitNo: "B14-04",
             unitType: "Apartment",
             floorNo: 0,
-            extraFeatures: {
-                gardenArea: "170 m²"
-            },
             payment: {
                 totalPrice: 6200000,
-                downPayment: 6043166,
-                remainingAmount: 81257,
-                installmentDuration: "6 Months"
+                downPayment: 2480000,
+                remainingAmount: 3720000,
+                installmentDuration: "5 Years"
             }
         }
     },
@@ -131,7 +129,7 @@ const properties = [
         location: "6th October City",
         type: "Apartment",
         area: "49 m²",
-        imageUrl: "images/oct.jpg", // Local image file
+        imageUrl: "images/oct.jpg",
         description: "Modern apartment in Building 14C",
         projectDetails: {
             projectName: "Building 14C",
@@ -154,7 +152,7 @@ const properties = [
         location: "6th October City",
         type: "Apartment",
         area: "124 m²",
-        imageUrl: "images/oct.jpg", // Local image file
+        imageUrl: "images/oct.jpg",
         description: "Spacious apartment in Building 14C",
         projectDetails: {
             projectName: "Building 14C",
@@ -177,7 +175,7 @@ const properties = [
         location: "6th October City",
         type: "Apartment",
         area: "124 m²",
-        imageUrl: "images/oct.jpg", // Local image file
+        imageUrl: "images/oct.jpg",
         description: "Modern apartment in Building 14C",
         projectDetails: {
             projectName: "Building 14C",
@@ -200,7 +198,7 @@ const properties = [
         location: "6th October City",
         type: "Apartment",
         area: "134 m²",
-        imageUrl: "images/oct.jpg", // Local image file
+        imageUrl: "images/oct.jpg",
         description: "First floor apartment in Building 14C",
         projectDetails: {
             projectName: "Building 14C",
@@ -223,7 +221,7 @@ const properties = [
         location: "6th October City",
         type: "Apartment",
         area: "139 m²",
-        imageUrl: "images/oct.jpg", // Local image file
+        imageUrl: "images/oct.jpg",
         description: "First floor apartment in Building 14C",
         projectDetails: {
             projectName: "Building 14C",
@@ -246,7 +244,7 @@ const properties = [
         location: "6th October City",
         type: "Apartment",
         area: "98 m²",
-        imageUrl: "images/oct.jpg", // Local image file
+        imageUrl: "images/oct.jpg",
         description: "First floor apartment in Building 14C",
         projectDetails: {
             projectName: "Building 14C",
@@ -269,7 +267,7 @@ const properties = [
         location: "6th October City",
         type: "Apartment",
         area: "139 m²",
-        imageUrl: "images/oct.jpg", // Local image file
+        imageUrl: "images/oct.jpg",
         description: "Second floor apartment in Building 14C",
         projectDetails: {
             projectName: "Building 14C",
@@ -292,7 +290,7 @@ const properties = [
         location: "6th October City",
         type: "Apartment",
         area: "134 m²",
-        imageUrl: "images/oct.jpg", // Local image file
+        imageUrl: "images/oct.jpg",
         description: "Third floor apartment in Building 14C",
         projectDetails: {
             projectName: "Building 14C",
@@ -315,7 +313,7 @@ const properties = [
         location: "6th October City",
         type: "Apartment",
         area: "139 m²",
-        imageUrl: "images/oct.jpg", // Local image file
+        imageUrl: "images/oct.jpg",
         description: "Third floor apartment in Building 14C",
         projectDetails: {
             projectName: "Building 14C",
@@ -338,7 +336,7 @@ const properties = [
         location: "6th October City",
         type: "Apartment",
         area: "157 m²",
-        imageUrl: "images/oct.jpg", // Local image file
+        imageUrl: "images/oct.jpg",
         description: "Fourth floor apartment in Building 14C",
         projectDetails: {
             projectName: "Building 14C",
@@ -361,7 +359,7 @@ const properties = [
         location: "6th October City",
         type: "Apartment",
         area: "162 m²",
-        imageUrl: "images/oct.jpg", // Local image file
+        imageUrl: "images/oct.jpg",
         description: "Fourth floor apartment in Building 14C",
         projectDetails: {
             projectName: "Building 14C",
@@ -384,7 +382,7 @@ const properties = [
         location: "6th October City",
         type: "Apartment",
         area: "118 m²",
-        imageUrl: "images/oct.jpg", // Local image file
+        imageUrl: "images/oct.jpg",
         description: "Fourth floor apartment in Building 14C",
         projectDetails: {
             projectName: "Building 14C",
