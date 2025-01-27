@@ -544,6 +544,26 @@ function showLess() {
 
 // Initialize the page
 document.addEventListener('DOMContentLoaded', function() {
+    // Populate location filter
+    const locations = [...new Set(properties.map(p => p.location))].sort();
+    const locationFilter = document.getElementById('location-filter');
+    locations.forEach(location => {
+        const option = document.createElement('option');
+        option.value = location;
+        option.textContent = location;
+        locationFilter.appendChild(option);
+    });
+
+    // Populate type filter
+    const types = [...new Set(properties.map(p => p.type))].sort();
+    const typeFilter = document.getElementById('type-filter');
+    types.forEach(type => {
+        const option = document.createElement('option');
+        option.value = type;
+        option.textContent = type;
+        typeFilter.appendChild(option);
+    });
+
     // Add event listeners for filters
     document.getElementById('location-filter').addEventListener('change', filterProperties);
     document.getElementById('type-filter').addEventListener('change', filterProperties);
