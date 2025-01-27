@@ -431,32 +431,40 @@ let filteredProperties = [...properties];
 
 // Format price for display
 function formatPrice(price) {
-    if (price >= 1000000) {
-        return (price / 1000000).toFixed(1) + 'M EGP';
-    }
-    return price.toLocaleString() + ' EGP';
+    return price.toLocaleString('en-US');
 }
 
 // Handle price range inputs
 function handlePriceRangeInputs() {
     const minInput = document.getElementById('price-min');
     const maxInput = document.getElementById('price-max');
-    const minPrice = document.getElementById('min-price');
-    const maxPrice = document.getElementById('max-price');
+    const minDisplay = document.getElementById('min-price');
+    const maxDisplay = document.getElementById('max-price');
+
+    // Update displays
+    const minValue = parseInt(minInput.value);
+    const maxValue = parseInt(maxInput.value);
+
+    minDisplay.textContent = minValue >= 1000000 ? 
+        (minValue / 1000000).toFixed(1) + 'M EGP' : 
+        formatPrice(minValue) + ' EGP';
     
-    // Update display values
-    minPrice.textContent = formatPrice(parseInt(minInput.value));
-    maxPrice.textContent = formatPrice(parseInt(maxInput.value));
+    maxDisplay.textContent = maxValue >= 1000000 ? 
+        (maxValue / 1000000).toFixed(1) + 'M EGP' : 
+        formatPrice(maxValue) + ' EGP';
 
     // Ensure min doesn't exceed max
-    if (parseInt(minInput.value) > parseInt(maxInput.value)) {
-        if (this === minInput) {
-            minInput.value = maxInput.value;
+    if (minValue > maxValue) {
+        if (minInput === document.activeElement) {
+            maxInput.value = minValue;
+            maxDisplay.textContent = minDisplay.textContent;
         } else {
-            maxInput.value = minInput.value;
+            minInput.value = maxValue;
+            minDisplay.textContent = maxDisplay.textContent;
         }
     }
 
+    // Trigger filtering
     filterProperties();
 }
 
@@ -534,6 +542,28 @@ function showLess() {
     displayProperties();
 }
 
+// Initialize the page
+document.addEventListener('DOMContentLoaded', function() {
+    // Add event listeners for filters
+    document.getElementById('location-filter').addEventListener('change', filterProperties);
+    document.getElementById('type-filter').addEventListener('change', filterProperties);
+    
+    // Add event listeners for price range
+    document.getElementById('price-min').addEventListener('input', handlePriceRangeInputs);
+    document.getElementById('price-max').addEventListener('input', handlePriceRangeInputs);
+
+    // Add event listeners for pagination buttons
+    document.getElementById('show-more-btn').addEventListener('click', showMore);
+    document.getElementById('show-all-btn').addEventListener('click', showAll);
+    document.getElementById('show-less-btn').addEventListener('click', showLess);
+
+    // Initialize price range inputs
+    handlePriceRangeInputs();
+
+    // Initial display of all properties
+    displayProperties();
+});
+
 // Create property card
 function createPropertyCard(property) {
     const propertyCard = document.createElement('div');
@@ -585,44 +615,6 @@ function createPropertyCard(property) {
     `;
     return propertyCard;
 }
-
-// Initialize the page
-document.addEventListener('DOMContentLoaded', function() {
-    // Populate location filter
-    const locations = [...new Set(properties.map(p => p.location))].sort();
-    const locationFilter = document.getElementById('location-filter');
-    locations.forEach(location => {
-        locationFilter.innerHTML += `<option value="${location}">${location}</option>`;
-    });
-
-    // Populate type filter
-    const types = [...new Set(properties.map(p => p.type))].sort();
-    const typeFilter = document.getElementById('type-filter');
-    types.forEach(type => {
-        typeFilter.innerHTML += `<option value="${type}">${type}</option>`;
-    });
-
-    // Set up price range sliders
-    const minInput = document.getElementById('price-min');
-    const maxInput = document.getElementById('price-max');
-
-    // Add event listeners
-    document.getElementById('location-filter').addEventListener('change', filterProperties);
-    document.getElementById('type-filter').addEventListener('change', filterProperties);
-    document.getElementById('price-min').addEventListener('input', filterProperties);
-    document.getElementById('price-max').addEventListener('input', filterProperties);
-
-    // Add event listeners for pagination buttons
-    document.getElementById('show-more-btn').addEventListener('click', showMore);
-    document.getElementById('show-all-btn').addEventListener('click', showAll);
-    document.getElementById('show-less-btn').addEventListener('click', showLess);
-
-    // Initialize price range inputs
-    handlePriceRangeInputs();
-
-    // Initial display of all properties
-    displayProperties();
-});
 
 // New function to show email form
 function showEmailForm(propertyId) {
