@@ -544,6 +544,9 @@ function showLess() {
 
 // Initialize the page
 document.addEventListener('DOMContentLoaded', function() {
+    // Set initial filtered properties
+    filteredProperties = [...properties];
+    
     // Populate location filter
     const locations = [...new Set(properties.map(p => p.location))].sort();
     const locationFilter = document.getElementById('location-filter');
