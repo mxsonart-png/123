@@ -427,8 +427,7 @@ for (let i = 0; i < properties.length; i++) {
 // Global variables for pagination
 let currentDisplayCount = 3;
 const initialDisplayCount = 3;
-const moreDisplayCount = 6;
-let filteredProperties = [];
+let filteredProperties = [...properties];
 
 // Format price for display
 function formatPrice(price) {
@@ -465,27 +464,42 @@ function handlePriceRangeInputs() {
 function filterProperties() {
     const location = document.getElementById('location-filter').value;
     const type = document.getElementById('type-filter').value;
-    const minPrice = parseInt(document.getElementById('price-min').value);
-    const maxPrice = parseInt(document.getElementById('price-max').value);
+    const minPrice = parseInt(document.getElementById('price-min').value) || 0;
+    const maxPrice = parseInt(document.getElementById('price-max').value) || Number.MAX_SAFE_INTEGER;
 
     // Filter properties
     filteredProperties = properties.filter(property => 
         (location === 'all' || property.location === location) &&
         (type === 'all' || property.type === type) &&
-        property.priceValue >= minPrice && property.priceValue <= maxPrice
+        property.priceValue >= minPrice &&
+        property.priceValue <= maxPrice
     );
 
     // Reset display count when filter changes
     currentDisplayCount = initialDisplayCount;
     
-    // Update pagination buttons visibility
-    updatePaginationButtons();
-    
     // Display properties
     displayProperties();
 }
 
-// Function to update pagination buttons visibility
+// Display properties
+function displayProperties() {
+    const propertiesContainer = document.getElementById('properties-container');
+    propertiesContainer.innerHTML = '';
+
+    // Display only up to currentDisplayCount properties
+    const propertiesToShow = filteredProperties.slice(0, currentDisplayCount);
+
+    propertiesToShow.forEach(property => {
+        const propertyCard = createPropertyCard(property);
+        propertiesContainer.appendChild(propertyCard);
+    });
+
+    // Update pagination buttons visibility
+    updatePaginationButtons();
+}
+
+// Update pagination buttons visibility
 function updatePaginationButtons() {
     const showMoreBtn = document.getElementById('show-more-btn');
     const showAllBtn = document.getElementById('show-all-btn');
@@ -502,20 +516,22 @@ function updatePaginationButtons() {
     }
 }
 
-// Display properties
-function displayProperties() {
-    const propertiesContainer = document.getElementById('properties-container');
-    propertiesContainer.innerHTML = '';
+// Show more properties
+function showMore() {
+    currentDisplayCount += 3;
+    displayProperties();
+}
 
-    // Display only up to currentDisplayCount properties
-    const propertiesToShow = filteredProperties.slice(0, currentDisplayCount);
+// Show all properties
+function showAll() {
+    currentDisplayCount = filteredProperties.length;
+    displayProperties();
+}
 
-    propertiesToShow.forEach(property => {
-        const propertyCard = createPropertyCard(property);
-        propertiesContainer.appendChild(propertyCard);
-    });
-
-    updatePaginationButtons();
+// Show less properties
+function showLess() {
+    currentDisplayCount = initialDisplayCount;
+    displayProperties();
 }
 
 // Create property card
@@ -570,64 +586,43 @@ function createPropertyCard(property) {
     return propertyCard;
 }
 
-// Show more properties
-function showMore() {
-    currentDisplayCount += 3;
-    displayProperties();
-}
-
-// Show all properties
-function showAll() {
-    currentDisplayCount = filteredProperties.length;
-    displayProperties();
-}
-
-// Show less properties
-function showLess() {
-    currentDisplayCount = initialDisplayCount;
-    displayProperties();
-}
-
-// Contact via WhatsApp
-function contactAboutProperty(propertyId) {
-    const property = properties.find(p => p.id === propertyId);
-    const contactForm = document.getElementById('contact-form');
-    const propertyInfo = document.getElementById('property-info');
-    
-    // Store property info in hidden field
-    propertyInfo.value = JSON.stringify({
-        id: property.id,
-        title: property.title,
-        price: property.price,
-        location: property.location,
-        area: property.area,
-        bedrooms: property.bedrooms,
-        gardenArea: property.gardenArea,
-        payment: property.projectDetails.payment,
-        contactMethod: 'whatsapp'
+// Initialize the page
+document.addEventListener('DOMContentLoaded', function() {
+    // Populate location filter
+    const locations = [...new Set(properties.map(p => p.location))].sort();
+    const locationFilter = document.getElementById('location-filter');
+    locations.forEach(location => {
+        locationFilter.innerHTML += `<option value="${location}">${location}</option>`;
     });
-    
-    // Pre-fill the message
-    const messageArea = document.getElementById('message');
-    messageArea.value = `I am interested in this property:
 
-Property Details:
-- Unit: ${property.title}
-- Location: ${property.location}
-- Price: ${property.price}
-- Area: ${property.area}
-${property.bedrooms ? `- Bedrooms: ${property.bedrooms}` : ''}
-${property.gardenArea ? `- Garden Area: ${property.gardenArea}` : ''}
-- Payment Details:
-  - Down Payment: ${formatPrice(property.projectDetails.payment.downPayment)}
-  - Remaining Amount: ${formatPrice(property.projectDetails.payment.remainingAmount)}
-  - Installment Duration: ${property.projectDetails.payment.installmentDuration}
+    // Populate type filter
+    const types = [...new Set(properties.map(p => p.type))].sort();
+    const typeFilter = document.getElementById('type-filter');
+    types.forEach(type => {
+        typeFilter.innerHTML += `<option value="${type}">${type}</option>`;
+    });
 
-I would like to get more information about this property and discuss viewing options.`;
-    
-    // Scroll to form
-    contactForm.scrollIntoView({ behavior: 'smooth' });
-}
+    // Set up price range sliders
+    const minInput = document.getElementById('price-min');
+    const maxInput = document.getElementById('price-max');
+
+    // Add event listeners
+    document.getElementById('location-filter').addEventListener('change', filterProperties);
+    document.getElementById('type-filter').addEventListener('change', filterProperties);
+    document.getElementById('price-min').addEventListener('input', filterProperties);
+    document.getElementById('price-max').addEventListener('input', filterProperties);
+
+    // Add event listeners for pagination buttons
+    document.getElementById('show-more-btn').addEventListener('click', showMore);
+    document.getElementById('show-all-btn').addEventListener('click', showAll);
+    document.getElementById('show-less-btn').addEventListener('click', showLess);
+
+    // Initialize price range inputs
+    handlePriceRangeInputs();
+
+    // Initial display of all properties
+    displayProperties();
+});
 
 // New function to show email form
 function showEmailForm(propertyId) {
@@ -769,35 +764,43 @@ Thank you!`,
     }
 });
 
-// Initialize the page
-document.addEventListener('DOMContentLoaded', function() {
-    // Populate location filter
-    const locations = [...new Set(properties.map(p => p.location))].sort();
-    const locationFilter = document.getElementById('location-filter');
-    locations.forEach(location => {
-        locationFilter.innerHTML += `<option value="${location}">${location}</option>`;
+// Contact via WhatsApp
+function contactAboutProperty(propertyId) {
+    const property = properties.find(p => p.id === propertyId);
+    const contactForm = document.getElementById('contact-form');
+    const propertyInfo = document.getElementById('property-info');
+    
+    // Store property info in hidden field
+    propertyInfo.value = JSON.stringify({
+        id: property.id,
+        title: property.title,
+        price: property.price,
+        location: property.location,
+        area: property.area,
+        bedrooms: property.bedrooms,
+        gardenArea: property.gardenArea,
+        payment: property.projectDetails.payment,
+        contactMethod: 'whatsapp'
     });
+    
+    // Pre-fill the message
+    const messageArea = document.getElementById('message');
+    messageArea.value = `I am interested in this property:
 
-    // Populate type filter
-    const types = [...new Set(properties.map(p => p.type))].sort();
-    const typeFilter = document.getElementById('type-filter');
-    types.forEach(type => {
-        typeFilter.innerHTML += `<option value="${type}">${type}</option>`;
-    });
+Property Details:
+- Unit: ${property.title}
+- Location: ${property.location}
+- Price: ${property.price}
+- Area: ${property.area}
+${property.bedrooms ? `- Bedrooms: ${property.bedrooms}` : ''}
+${property.gardenArea ? `- Garden Area: ${property.gardenArea}` : ''}
+- Payment Details:
+  - Down Payment: ${formatPrice(property.projectDetails.payment.downPayment)}
+  - Remaining Amount: ${formatPrice(property.projectDetails.payment.remainingAmount)}
+  - Installment Duration: ${property.projectDetails.payment.installmentDuration}
 
-    // Set up price range sliders
-    const minInput = document.getElementById('price-min');
-    const maxInput = document.getElementById('price-max');
-
-    // Add event listeners
-    locationFilter.addEventListener('change', filterProperties);
-    typeFilter.addEventListener('change', filterProperties);
-    minInput.addEventListener('input', handlePriceRangeInputs);
-    maxInput.addEventListener('input', handlePriceRangeInputs);
-
-    // Initialize price display
-    handlePriceRangeInputs();
-
-    // Initial display
-    filterProperties();
-});
+I would like to get more information about this property and discuss viewing options.`;
+    
+    // Scroll to form
+    contactForm.scrollIntoView({ behavior: 'smooth' });
+}
