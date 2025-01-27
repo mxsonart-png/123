@@ -475,23 +475,20 @@ function filterProperties() {
     const minPrice = parseInt(document.getElementById('price-min').value) || 0;
     const maxPrice = parseInt(document.getElementById('price-max').value) || Number.MAX_SAFE_INTEGER;
 
-    // Reset filtered properties to all properties
-    filteredProperties = [...properties];
+    console.log('Filtering with:', { location, type, minPrice, maxPrice }); // Debug log
 
-    // Apply location filter if not "all"
-    if (location !== 'all') {
-        filteredProperties = filteredProperties.filter(property => property.location === location);
-    }
+    // Filter properties
+    filteredProperties = properties.filter(property => {
+        const locationMatch = location === 'all' || property.location === location;
+        const typeMatch = type === 'all' || property.type === type;
+        const priceMatch = property.priceValue >= minPrice && property.priceValue <= maxPrice;
+        
+        console.log('Property:', property.id, { locationMatch, typeMatch, priceMatch }); // Debug log
+        
+        return locationMatch && typeMatch && priceMatch;
+    });
 
-    // Apply type filter if not "all"
-    if (type !== 'all') {
-        filteredProperties = filteredProperties.filter(property => property.type === type);
-    }
-
-    // Apply price filter
-    filteredProperties = filteredProperties.filter(property => 
-        property.priceValue >= minPrice && property.priceValue <= maxPrice
-    );
+    console.log('Filtered properties:', filteredProperties.length); // Debug log
 
     // Reset display count when filter changes
     currentDisplayCount = initialDisplayCount;
