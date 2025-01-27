@@ -27,8 +27,8 @@ const properties = [
     {
         id: "C102",
         title: "Edelma Chalet",
-        price: "EGP 13,300,000",
-        priceValue: 13300000,
+        price: "EGP 10,330,000",
+        priceValue: 10330000,
         location: "Sahl Hasheesh",
         type: "Chalet",
         bedrooms: 2,
@@ -41,9 +41,9 @@ const properties = [
             unitType: "Chalet",
             floorNo: 1,
             payment: {
-                totalPrice: 13300000,
+                totalPrice: 10330000,
                 downPayment: 5080000,
-                remainingAmount: 8250000,
+                remainingAmount: 5250000,
                 installmentDuration: "1.5 Years"
             }
         }
@@ -115,9 +115,9 @@ const properties = [
             floorNo: 0,
             payment: {
                 totalPrice: 6200000,
-                downPayment: 2480000,
-                remainingAmount: 3720000,
-                installmentDuration: "5 Years"
+                downPayment: 6043166,
+                remainingAmount: 81257,
+                installmentDuration: "6 Months"
             }
         }
     },
@@ -461,52 +461,61 @@ function handlePriceRangeInputs() {
     filterProperties();
 }
 
-// Display properties with pagination
-function displayProperties(propertiesToDisplay) {
-    filteredProperties = propertiesToDisplay;
-    const container = document.getElementById('properties-container');
-    const showLessBtn = document.getElementById('show-less-btn');
+// Filter properties
+function filterProperties() {
+    const location = document.getElementById('location-filter').value;
+    const type = document.getElementById('type-filter').value;
+    const minPrice = parseInt(document.getElementById('price-min').value);
+    const maxPrice = parseInt(document.getElementById('price-max').value);
+
+    // Filter properties
+    filteredProperties = properties.filter(property => 
+        (location === 'all' || property.location === location) &&
+        (type === 'all' || property.type === type) &&
+        property.priceValue >= minPrice && property.priceValue <= maxPrice
+    );
+
+    // Reset display count when filter changes
+    currentDisplayCount = initialDisplayCount;
+    
+    // Update pagination buttons visibility
+    updatePaginationButtons();
+    
+    // Display properties
+    displayProperties();
+}
+
+// Function to update pagination buttons visibility
+function updatePaginationButtons() {
     const showMoreBtn = document.getElementById('show-more-btn');
     const showAllBtn = document.getElementById('show-all-btn');
-    
-    // Clear the container
-    container.innerHTML = '';
-    
-    // Determine how many properties to show
-    const displayCount = Math.min(currentDisplayCount, propertiesToDisplay.length);
-    
-    // Display the properties
-    for (let i = 0; i < displayCount; i++) {
-        const property = propertiesToDisplay[i];
-        const propertyCard = createPropertyCard(property);
-        container.appendChild(propertyCard);
-    }
-    
-    // Show/hide pagination buttons based on the number of properties
-    if (propertiesToDisplay.length > 6) {
-        if (currentDisplayCount === initialDisplayCount) {
-            showLessBtn.style.display = 'none';
-            showMoreBtn.style.display = 'inline-block';
-            showAllBtn.style.display = 'inline-block';
-        } else if (currentDisplayCount === moreDisplayCount) {
-            showLessBtn.style.display = 'inline-block';
-            showMoreBtn.style.display = 'none';
-            showAllBtn.style.display = 'inline-block';
-        } else if (currentDisplayCount > moreDisplayCount) {
-            showLessBtn.style.display = 'inline-block';
-            showMoreBtn.style.display = 'none';
-            showAllBtn.style.display = 'none';
-        }
-    } else {
+    const showLessBtn = document.getElementById('show-less-btn');
+
+    if (filteredProperties.length > currentDisplayCount) {
+        showMoreBtn.style.display = 'inline-block';
+        showAllBtn.style.display = 'inline-block';
         showLessBtn.style.display = currentDisplayCount > initialDisplayCount ? 'inline-block' : 'none';
+    } else {
         showMoreBtn.style.display = 'none';
         showAllBtn.style.display = 'none';
+        showLessBtn.style.display = currentDisplayCount > initialDisplayCount ? 'inline-block' : 'none';
     }
+}
 
-    // Scroll to properties container if showing less
-    if (currentDisplayCount < filteredProperties.length) {
-        document.getElementById('properties').scrollIntoView({ behavior: 'smooth' });
-    }
+// Display properties
+function displayProperties() {
+    const propertiesContainer = document.getElementById('properties-container');
+    propertiesContainer.innerHTML = '';
+
+    // Display only up to currentDisplayCount properties
+    const propertiesToShow = filteredProperties.slice(0, currentDisplayCount);
+
+    propertiesToShow.forEach(property => {
+        const propertyCard = createPropertyCard(property);
+        propertiesContainer.appendChild(propertyCard);
+    });
+
+    updatePaginationButtons();
 }
 
 // Create property card
@@ -561,55 +570,22 @@ function createPropertyCard(property) {
     return propertyCard;
 }
 
-// Event listeners for pagination buttons
-document.getElementById('show-less-btn').addEventListener('click', function() {
-    if (currentDisplayCount > moreDisplayCount) {
-        currentDisplayCount = moreDisplayCount;
-    } else {
-        currentDisplayCount = initialDisplayCount;
-    }
-    displayProperties(filteredProperties);
-});
+// Show more properties
+function showMore() {
+    currentDisplayCount += 3;
+    displayProperties();
+}
 
-document.getElementById('show-more-btn').addEventListener('click', function() {
-    currentDisplayCount = moreDisplayCount;
-    displayProperties(filteredProperties);
-});
-
-document.getElementById('show-all-btn').addEventListener('click', function() {
+// Show all properties
+function showAll() {
     currentDisplayCount = filteredProperties.length;
-    displayProperties(filteredProperties);
-});
+    displayProperties();
+}
 
-// Filter properties
-function filterProperties() {
+// Show less properties
+function showLess() {
     currentDisplayCount = initialDisplayCount;
-    const location = document.getElementById('location-filter').value;
-    const type = document.getElementById('type-filter').value;
-    const minPrice = parseInt(document.getElementById('price-min').value);
-    const maxPrice = parseInt(document.getElementById('price-max').value);
-
-    let filteredProperties = [...properties];
-
-    // Apply filters
-    if (location) {
-        filteredProperties = filteredProperties.filter(property => 
-            property.location === location
-        );
-    }
-
-    if (type) {
-        filteredProperties = filteredProperties.filter(property => 
-            property.type === type
-        );
-    }
-
-    // Filter by price range
-    filteredProperties = filteredProperties.filter(property => 
-        property.priceValue >= minPrice && property.priceValue <= maxPrice
-    );
-
-    displayProperties(filteredProperties);
+    displayProperties();
 }
 
 // Contact via WhatsApp
@@ -642,11 +618,10 @@ Property Details:
 - Area: ${property.area}
 ${property.bedrooms ? `- Bedrooms: ${property.bedrooms}` : ''}
 ${property.gardenArea ? `- Garden Area: ${property.gardenArea}` : ''}
-
-Payment Details:
-- Down Payment: ${formatPrice(property.projectDetails.payment.downPayment)}
-- Remaining Amount: ${formatPrice(property.projectDetails.payment.remainingAmount)}
-- Installment Duration: ${property.projectDetails.payment.installmentDuration}
+- Payment Details:
+  - Down Payment: ${formatPrice(property.projectDetails.payment.downPayment)}
+  - Remaining Amount: ${formatPrice(property.projectDetails.payment.remainingAmount)}
+  - Installment Duration: ${property.projectDetails.payment.installmentDuration}
 
 I would like to get more information about this property and discuss viewing options.`;
     
@@ -683,11 +658,10 @@ Property Details:
 - Area: ${property.area}
 ${property.bedrooms ? `- Bedrooms: ${property.bedrooms}` : ''}
 ${property.gardenArea ? `- Garden Area: ${property.gardenArea}` : ''}
-
-Payment Details:
-- Down Payment: ${formatPrice(property.projectDetails.payment.downPayment)}
-- Remaining Amount: ${formatPrice(property.projectDetails.payment.remainingAmount)}
-- Installment Duration: ${property.projectDetails.payment.installmentDuration}
+- Payment Details:
+  - Down Payment: ${formatPrice(property.projectDetails.payment.downPayment)}
+  - Remaining Amount: ${formatPrice(property.projectDetails.payment.remainingAmount)}
+  - Installment Duration: ${property.projectDetails.payment.installmentDuration}
 
 I would like to get more information about this property and discuss viewing options.`;
     
@@ -825,5 +799,5 @@ document.addEventListener('DOMContentLoaded', function() {
     handlePriceRangeInputs();
 
     // Initial display
-    displayProperties(properties);
+    filterProperties();
 });
